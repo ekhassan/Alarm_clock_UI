@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Clock</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="timeCount();">
+
+    <div class="main">
+        <div class="contianer">
+            <div class="main-con">
+                <h1>Alarm Clock</h1>
+                <div class="time">
+                    <div id="ct6"></div>
+                </div>
+                <div class="set-alarm">
+                    <div><input type="text" onkeypress="return validateInput(event)"></div>
+                    <div class="colon">:</div>
+                    <div><input type="text" onkeypress="return validateInput(event)"></div>
+                    <div class="input">
+                        <select name="" id="">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="set-btn">
+                    <button class="set-button">Set Alarm</button>
+                </div>
+
+                <hr>
+
+                <div>
+                    <h1 class="alarm-list-heading">Alarm List</h1>
+                </div>
+                <div class="alarm-list">
+
+                    <div class="alarm">
+                        <div class="time">
+                            <h3>06 : 00 AM</h3>
+                        </div>
+                        <div>
+                            <button class="btns"><i onclick="my(this)" class="fa fa-toggle-on"></i></button>
+                            <button class="btns"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div class="alarm">
+                        <div class="time">
+                            <h3>06 : 00 AM</h3>
+                        </div>
+                        <div>
+                            <button class="btns"><i onclick="my(this)" class="fa fa-toggle-on"></i></button>
+                            <button class="btns"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div class="alarm">
+                        <div class="time">
+                            <h3>06 : 00 AM</h3>
+                        </div>
+                        <div>
+                            <button class="btns"><i onclick="my(this)" class="fa fa-toggle-on"></i></button>
+                            <button class="btns"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div class="alarm">
+                        <div class="time">
+                            <h3>06 : 00 AM</h3>
+                        </div>
+                        <div>
+                            <button class="btns"><i onclick="my(this)" class="fa fa-toggle-on"></i></button>
+                            <button class="btns"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div class="alarm">
+                        <div class="time">
+                            <h3>06 : 00 AM</h3>
+                        </div>
+                        <div>
+                            <button class="btns"><i onclick="my(this)" class="fa fa-toggle-on"></i></button>
+                            <button class="btns"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div class="alarm">
+                        <div class="time">
+                            <h3>06 : 00 AM</h3>
+                        </div>
+                        <div>
+                            <button class="btns"><i onclick="my(this)" class="fa fa-toggle-on"></i></button>
+                            <button class="btns"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function display_ct6() {
+            var x = new Date()
+            var ampm = x.getHours() >= 12 ? ' PM' : ' AM';
+            hours = x.getHours() % 12;
+            hours = hours ? hours : 12;
+            var x1 = x.getMonth() + 1 + "/" + x.getDate() + "/" + x.getFullYear();
+            x1 = x1 + " - " + hours + ":" + x.getMinutes() + ":" + x.getSeconds() + ampm;
+            document.getElementById('ct6').innerHTML = x1;
+            display_c6();
+        }
+        function display_c6() {
+            var refresh = 1000; 
+            mytime = setTimeout('display_ct6()', refresh)
+        }
+        display_c6()
+
+
+        function validateInput(event) {
+            var keyCode = event.keyCode || event.which;
+
+            if ((keyCode >= 48 && keyCode <= 57) || 
+                keyCode == 8 || 
+                keyCode == 9 || 
+                keyCode == 13 ||
+                keyCode == 46) { 
+                var inputValue = event.target.value;
+                if (inputValue.length == 2) {
+                    var firstTwoChars = inputValue.substring(0, 2);
+                    if (parseInt(firstTwoChars) >= 0 && parseInt(firstTwoChars) <= 12) {
+                        return true;
+                    } else {
+                        event.preventDefault();
+                        return false;
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        }
+
+    </script>
+    </div>
+
+
+</body>
+
+</html>
